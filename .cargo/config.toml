@@ -1,9 +1,6 @@
-[build]
-target = "x86_64-unknown-none"
-
-[target.x86_64-unknown-none]
-linker = "rust-lld"
-
-[unstable]
-build-std = ["core", "compiler_builtins"]
-build-std-features = ["compiler-builtins-mem"]
+[target."x86_64-unknown-none"]
+rustflags = [
+    "-C", "link-arg=-Tlinker.ld",
+    "-C", "relocation-model=static", # 👈 재배치 정보를 만들지 않고 정적으로 고정
+    "-C", "link-arg=-no-pie",        # 👈 PIE(Position-Independent Executable) 해제
+]
