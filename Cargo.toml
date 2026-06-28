@@ -1,8 +1,13 @@
 [package]
-name = "my_text_os"
+name = "my_rust_os"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
 
-[dependencies]
-limine = "0.6.5"
+[lib]
+crate-type = ["staticlib"]
 
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"

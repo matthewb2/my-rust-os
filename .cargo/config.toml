@@ -1,6 +1,5 @@
-[target."x86_64-unknown-none"]
-rustflags = [
-    "-C", "link-arg=-Tlinker.ld",
-    "-C", "relocation-model=static", # 👈 재배치 정보를 만들지 않고 정적으로 고정
-    "-C", "link-arg=-no-pie",        # 👈 PIE(Position-Independent Executable) 해제
-]
+[unstable]
+build-std = ["core", "compiler_builtins"]
+[target.i686-my_rust_os.json]
+linker = "gcc"
+
