@@ -1,11 +1,18 @@
-ENTRY(start)
+ENTRY(_start)
+OUTPUT_FORMAT(elf64-x86-64)
 
-SECTIONS
-{
+SECTIONS {
     . = 1M;
 
-    .text : { *(.multiboot_header) *(.text*) }
-    .rodata : { *(.rodata*) }
-    .data : { *(.data*) }
-    .bss : { *(.bss*) }
+    .multiboot : {
+        KEEP(*(.multiboot))
+    }
+
+    .text : { *(.text .text.*) }
+    .rodata : { *(.rodata .rodata.*) }
+    .data : { *(.data .data.*) }
+    .bss : {
+        *(.bss .bss.*)
+        *(COMMON)
+    }
 }
